@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+      .imagen{
+        background: linear-gradient(rgba(5,7,12,0.1),rgba(5,7,12,0.1)),url(/img/header1.jpg);
+        background-size: cover;
+        background-position: center center;
+      }
+      .border{
+        border-bottom: 1px solid #E1E1E1;
+      }
+      .main{
+        background: linear-gradient(rgba(5,7,12,0.1),rgba(5,7,12,0.1)),url(/img/main1.jpg);
+        background-size: cover;
+        background-position: center center;
+      }
+      .scrooll{
+        scrollbar-width: none;
+      }
+      .login{
+        background: linear-gradient(rgba(5,7,12,0.1),rgba(5,7,12,0.1)),url(/img/main1.jpg);
+        background-size: cover;
+        background-position: center center;
+      }
+      .login2{
+        background: linear-gradient(rgba(5,7,12,0.1),rgba(5,7,12,0.1)),url(/img/woman.jpg);
+        background-size: cover;
+        background-position: top;
+      }
+    </style>
+    <style>
+      .imagen_cart{
+        background-image: url(/img/cart2.png);
+        background-size: cover;
+        background-position: center center;
+      }
+    </style>
+    <style>
+      .submenu:hover #carrito{
+        display: block;
+      }
+    </style>
+    <style>
+      .dancing-script {
+        font-family: "Dancing Script", cursive;
+        font-optical-sizing: auto;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="mt-0 bg-slate-700">
+    <div id="root" class="bg-slate-700 max-w-screen-xl m-auto"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/Hooks/useHook.js"></script>
+  </body>
+</html>
