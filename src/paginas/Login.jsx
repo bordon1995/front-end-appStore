@@ -7,15 +7,15 @@ import useAuth from "../Hooks/useAuth";
 
 export default function Login() {
 
-  const [view, setView] = useState([]);
+  const [view, setView] = useState({});
   const { handleChange, useUsuario, handleSubmit, msg } = useLogin();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
   useEffect(() => {
     const produc = async () => {
-      await usuario.main();
-      setView([...usuario.productos])
+      await usuario.pruevaget();
+      setView(usuario.prueva)
     }
     produc();
   }, [])
@@ -76,24 +76,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center mb-10">
-      <div className="flex md:grid gap-5 grid-cols-3 mx-auto h-80 overflow-x-auto w-[300px] md:overflow-auto md:w-[1000px] my-2 scrooll">
-        {view.map(ele =>
-          <div key={ele.id} className=" border md:border-4 border-[#741d51] flex flex-col bg-white justify-center items-center md:w-60 md:mx-20 md:px-1 mb-5 mt-5  rounded-2xl">
-            <div className=" w-full h-40 md:h-64">
-              <img
-                className=" h-full w-full bg-cover rounded-2xl"
-                src={`/img/${ele.imagen}`}
-                alt="imagen"
-              />
-            </div>
-            <div className="w-40">
-              <h3 className=" m-0 text-center md:text-xl font-semibold text-pretty md:font-black md:p-1"></h3>
-            </div>
-          </div>
-        )}
-      </div>
-      </div>
+      <p className="text-white">{view.respuesta}</p>
     </>
   );
 }

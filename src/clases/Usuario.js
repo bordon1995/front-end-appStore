@@ -8,6 +8,7 @@ export class Usuario {
 
     cart = JSON.parse(localStorage.getItem('carrito')) ?? [];
     productos = [];
+    prueva = '';
 
     constructor(args = {}) {
         this.usuario = {
@@ -119,6 +120,23 @@ export class Usuario {
             if(res.respuesta !== null){
                 this.setProductos(res.respuesta);
             }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async pruevaget() {
+        try {
+            // const config = {
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // }
+
+            const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`);
+            const res = await req.json();
+            console.log(res);
+            this.prueva = res;
         } catch (error) {
             console.log(error);
         }
