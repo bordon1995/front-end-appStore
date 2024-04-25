@@ -127,13 +127,19 @@ export class Usuario {
 
     async pruevaget() {
         try {
+            const headers = new Headers();
+
+            headers.append('Authorization', 'Basic ' + base64.encode("appsetore-backen" + ":" +  "l-6aHDIqJE52)h6_p6"));
+            headers.append('Content-Type', 'application/json');
             // const config = {
             //     headers: {
             //         "Content-Type": "application/json"
             //     }
             // }
 
-            const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`);
+            const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`,{
+                headers:headers
+            });
             const res = await req.json();
             console.log(res);
             this.prueva = res;
