@@ -127,19 +127,10 @@ export class Usuario {
 
     async pruevaget() {
         try {
-            const t = new Headers;
-            t.append("Authorization", "Basic " + base64.encode("appsetore-backen:l-6aHDIqJE52)h6_p6")),
-            t.append("Content-Type", "application/json");
-            const r = await (await fetch("https://wayfico.nyc.dom.my.id/api", {
-                headers: t
-            })).json();
-            console.log(r),
-            this.prueva = r
-
-            // const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`);
-            // const res = await req.json();
-            // console.log(res);
-            // this.prueva = res;
+            const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`);
+            const res = await req.json();
+            console.log(res);
+            this.prueva = res;
         } catch (error) {
             console.log(error);
         }
