@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Usuario} from "../clases/Usuario.js";
 import { Pedidos } from "../clases/Pedidos.js";
 
-const usuario = new Usuario();
+export const usuario = new Usuario();
 const pedidos = new Pedidos();
 
 const urlConfirmarToken = `${import.meta.env.VITE_URL_BACKEND}/api/confirmar-cuenta/`;

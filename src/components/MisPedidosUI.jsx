@@ -64,9 +64,9 @@ export default function MisPedidosUI() {
                 disabled={ele.id_estado !== "1"}
                 onClick={() => usuarioPedidos.setData(ele.id)} className=" h-5 w-5 md:h-7 md:w-7">
                 {ele.id_estado === "1" ?
-                  <img className="h-full w-full" src="../public/img/file-pen-solid.svg" alt="imagen" />
+                  <img className="h-full w-full" src="/img/file-pen-solid.svg" alt="imagen" />
                   :
-                  <img className="h-full w-full" src="../public/img/file-pen-solid2.svg" alt="imagen" />
+                  <img className="h-full w-full" src="/img/file-pen-solid2.svg" alt="imagen" />
                 }
               </button>
             </div>

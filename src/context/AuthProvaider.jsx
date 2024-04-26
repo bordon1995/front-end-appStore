@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import {usuario} from "../Hooks/useHook"
 
 const AuthContext = createContext();
 
@@ -25,6 +26,7 @@ const AuthProvider = ({ children }) => {
         const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api/perfil`,config);
         const res = await req.json();
         setAuth(res);
+        usuario.usuario.id = res.respuesta.id
         console.log(res)
       } catch (error) {
         console.log(error)
