@@ -92,7 +92,7 @@ export default function Admin() {
                disabled={!id.includes(ele.id)}
                onClick={() => upDatePedido(ele)}
                id="cata"
-               className={`px-2 h-full bg-slate-200 rounded-full text-white ${change.length > 0 && id.includes(ele.id) &&  "bg-[#82d4f7]" }`}>
+               className={`px-2 h-full rounded-full text-white ${change.length > 0 && id.includes(ele.id) ? "bg-[#82d4f7]" : "bg-slate-200" }`}>
                 Enviar
               </button>
             </td>
@@ -100,7 +100,7 @@ export default function Admin() {
               <button
               onClick={() => removePedido(ele)} 
               disabled={!remove.includes(ele.id)}
-              className={`px-2 h-full bg-slate-200 rounded-full text-white ${remove.includes(ele.id) && "bg-red-400"}`}>
+              className={`px-2 h-full rounded-full text-white ${remove.includes(ele.id) ? "bg-red-400" : "bg-slate-200"}`}>
                 Eliminar
               </button>
             </td>
