@@ -90,7 +90,6 @@ export class Pedidos {
     }
 
     async FecthPedidosPost(url, data) {
-        console.log(this.usuario)
         const token = localStorage.getItem('token');
         try {
             const config = {
@@ -117,18 +116,19 @@ export class Pedidos {
     }
 
     async FecthPedidosGet(url) {
+        const token = localStorage.getItem('token');
         try {
             const config = {
-                method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
+                    Authorization: `Bearer ${token}`
                 }
             }
             const req = await fetch(url, config);
             const res = await req.json();
+            if(res.respuesta.length > 0){
                 this.setPedidos(res.respuesta)
-            
+            }
         } catch (error) {
             console.log(error)
         }

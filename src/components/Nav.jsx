@@ -59,7 +59,7 @@ export default function Nav({ usuarioPedidos }) {
       {auth.respuesta?.administrador === "1" &&
       <Link to={"/home/mis-clientes"}>
         <button
-          onClick={() => logoAuth()}
+          onClick={() => vaciarCart()}
           className=" font-black p-2 text-white"
         >
           Mis Clientes
