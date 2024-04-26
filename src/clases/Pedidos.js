@@ -25,11 +25,6 @@ export class Pedidos {
             precio_total :  (args.cantidad * args.precio) ?? '',
             fecha :  this.fechaActual ?? ''
         }
-        this.usuario = {
-            id: args.id ?? '',
-            nombre: args.nombre ?? '',
-            apellido: args.apellido ?? ''
-        };
     }
 
     setUsuario(usuario) {
@@ -73,8 +68,8 @@ export class Pedidos {
         return pedidos;
     }
 
-    async main() {
-        await this.FecthPedidosPost(this.urlgetPedido, this.usuario);
+    async main(idUsuario) {
+        await this.FecthPedidosPost(this.urlgetPedido, idUsuario);
     }
 
     async all() {
@@ -95,12 +90,14 @@ export class Pedidos {
     }
 
     async FecthPedidosPost(url, data) {
+        console.log(this.usuario)
+        const token = localStorage.getItem('token');
         try {
             const config = {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(data)
             }

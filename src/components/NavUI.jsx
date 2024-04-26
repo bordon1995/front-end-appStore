@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import { pedidos } from "../context/AuthProvaider";
+// import { pedidos } from "../context/AuthProvaider";
 
-export default function NavUI({cart}) {
+export default function NavUI({usuarioPedidos}) {
 
-  const isEmty = () => cart.cart.length === 0;
+  const {cart,addPedido,vaciarCart,addCart} = usuarioPedidos;
+  const isEmty = () => cart.length === 0;
 
   const sendPedidos = async () =>{
-    await pedidos.add(cart.cart);
-    cart.vaciarCart();
+    await addPedido(cart.cart);
+    vaciarCart();
   }
 
   return (
@@ -46,7 +46,7 @@ export default function NavUI({cart}) {
                   </thead>
 
                   <tbody className="w-full text-center">
-                    {cart.cart.map(ele =>
+                    {cart.map(ele =>
                     <tr key={ele.id} className=" border-b border-slate-500">
                     <td>
                       <img
@@ -64,10 +64,10 @@ export default function NavUI({cart}) {
                     <td>
                       <div>
                         <p>
-                          <button onClick={() => cart.addCart(ele)}
+                          <button onClick={() => addCart(ele)}
                                   className="m-1 px-1 border">+</button>
                           {ele.cantidad}
-                          <button onClick={() => cart.addCart(ele, "left")}
+                          <button onClick={() => addCart(ele, "left")}
                                   className="m-1 px-1 border">-</button>
                         </p>
                       </div>
@@ -77,7 +77,7 @@ export default function NavUI({cart}) {
                   </tbody>    
                 </table>
                 <div className="flex justify-between p-2">
-                  <button onClick={() => cart.vaciarCart()} className=" bg-gray-400 p-1 px-5 rounded-xl text-white font-bold">
+                  <button onClick={() => vaciarCart()} className=" bg-gray-400 p-1 px-5 rounded-xl text-white font-bold">
                     Vaciar Carrito
                   </button>
                   <button onClick={() => sendPedidos(cart)} className=" bg-[#741d51] p-1 px-5 rounded-xl text-white font-bold">

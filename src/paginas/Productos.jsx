@@ -11,15 +11,10 @@ export default function Productos({ usuarioProducto }) {
 
     return (
         <>
-            {/* <h2 className=" font-sans font-medium underline m-0 text-3xl md:text-4xl text-center text-black p-2">
-                Nuestros Productos
-            </h2> */}
-
             <div className="grid grid-cols-2 gap-2 md:grid-cols-3 m-0.5 md:p-2 md:mx-20 ">
                 {usuarioProducto.productos.map(ele => (
-                    <>
-                        <div className="flex">
-                            <div key={ele.id} className=" border md:border-4 border-[#741d51] flex flex-col bg-white justify-center items-center md:w-64 mx-auto md:px-1 md:mb-2  rounded-2xl">
+                        <div key={ele.id} className="flex">
+                            <div className=" border md:border-4 border-[#741d51] flex flex-col bg-white justify-center items-center w-36 md:w-72 mx-auto md:px-1 md:mb-2  rounded-2xl">
                                 <div className=" w-full h-40 md:h-64">
                                     <img
                                         className=" h-full w-full bg-cover rounded-2xl"
@@ -28,8 +23,8 @@ export default function Productos({ usuarioProducto }) {
                                     />
                                 </div>
                                 <div className="w-full">
-                                    <h3 className=" m-0 text-center md:text-xl font-semibold text-pretty md:font-black md:p-1">{ele.nombre}</h3>
-                                    <p className=" w-[180px] md:text-lg md:w-[250px] text-[11px] ml-1 border-y border-gray-200">{ele.descripcion}</p>
+                                    <h3 className=" m-0 text-center text-[15px] md:text-xl font-semibold text-pretty md:font-black md:p-1">{ele.nombre}</h3>
+                                    <p className="md:text-lg w-32 md:w-[250px] text-[11px] mx-1 border-y border-gray-200">{ele.descripcion}</p>
                                     <span className=" mx-1 font-semibold text-xs md:text-lg">Precio: ${ele.precio} x u/s</span>
                                     <p className="mx-1 font-semibold text-xs md:text-lg">Minimo : 10 u/s</p>
                                     <p className="mx-1 font-semibold text-xs md:text-lg">Disponible : {ele.disponibilidad} u/s</p>
@@ -54,7 +49,7 @@ export default function Productos({ usuarioProducto }) {
                                     )}
                                 </div>
                             </div>
-                            {auth.administrador === "1" &&
+                            {auth.respuesta.administrador === "1" &&
                             <div className="flex flex-col items-center justify-end md:mb-10 mr-2">
                                 <button className="my-2 md:my-5 h-6 w-6 md:h-11 md:w-10 bg-gray-900 bg-opacity-50 rounded-xl p-1">
                                     <img src="/img/file-pen-solid.svg" alt="imagen" />
@@ -65,7 +60,6 @@ export default function Productos({ usuarioProducto }) {
                             </div>
                             }
                         </div>
-                    </>
                 ))}
             </div>
 

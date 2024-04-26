@@ -1,24 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLogin } from "../Hooks/useHook";
-import { usuario } from "../context/AuthProvaider";
 import Msg from "../authLayout/Msg";
 import useAuth from "../Hooks/useAuth";
 
 export default function Login() {
 
-  const [view, setView] = useState({});
   const { handleChange, useUsuario, handleSubmit, msg } = useLogin();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
-
-  useEffect(() => {
-    const produc = async () => {
-      await usuario.pruevaget();
-      setView(usuario.prueva)
-    }
-    produc();
-  }, [])
 
   const submit = async (e) => {
     e.preventDefault();
@@ -76,7 +66,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <p className="text-white">{view.respuesta}</p>
     </>
   );
 }

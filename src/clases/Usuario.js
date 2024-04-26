@@ -1,6 +1,5 @@
 export class Usuario {
 
-    token = localStorage.getItem('token');
     cantidadMinima = 10;
 
     urlRegistro = `${import.meta.env.VITE_URL_BACKEND}/api/registro`;
@@ -8,7 +7,6 @@ export class Usuario {
 
     cart = JSON.parse(localStorage.getItem('carrito')) ?? [];
     productos = [];
-    prueva = '';
 
     constructor(args = {}) {
         this.usuario = {
@@ -16,7 +14,6 @@ export class Usuario {
             apellido: args.apellido ?? '',
             correo : args.correo ?? '',
             password : args.password ?? ''
-
         };
     }
 
@@ -81,9 +78,8 @@ export class Usuario {
         await this.fetchProductosGET(this.urlgetProductos);
     }
 
-    async add(usuario){
-        const newUsuario = new Usuario(usuario);
-        const respuesta = this.fetchProductosPOST(this.urlRegistro,newUsuario.usuario);
+    async add(){
+        const respuesta = this.fetchProductosPOST(this.urlRegistro,this.usuario);
         return respuesta;
     }
 
@@ -106,11 +102,12 @@ export class Usuario {
     }
 
     async fetchProductosGET(uri) {
+        const token = localStorage.getItem('token');
         try {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${this.token}`
+                    Authorization: `Bearer ${token}`
                 }
             }
 
@@ -120,17 +117,6 @@ export class Usuario {
             if(res.respuesta !== null){
                 this.setProductos(res.respuesta);
             }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async pruevaget() {
-        try {
-            const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api`);
-            const res = await req.json();
-            console.log(res);
-            this.prueva = res;
         } catch (error) {
             console.log(error);
         }

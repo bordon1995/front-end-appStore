@@ -1,11 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import {Usuario} from "../clases/Usuario.js";
-import { Pedidos } from "../clases/Pedidos.js";
 
 const AuthContext = createContext();
-
-const usuario = new Usuario();
-const pedidos = new Pedidos();
 
 const AuthProvider = ({ children }) => {
   const [cargando,setCargando] = useState(true);
@@ -29,10 +24,8 @@ const AuthProvider = ({ children }) => {
       try {
         const req = await fetch(`${import.meta.env.VITE_URL_BACKEND}/api/perfil`,config);
         const res = await req.json();
-        console.log(res)
         setAuth(res);
-        usuario.setUsuario(res.respuesta);
-        pedidos.setUsuario(res.respuesta);
+        console.log(res)
       } catch (error) {
         console.log(error)
         setAuth({});
@@ -61,6 +54,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { AuthProvider , usuario , pedidos};
+export { AuthProvider };
 
 export default AuthContext;

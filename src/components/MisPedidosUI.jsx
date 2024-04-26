@@ -10,8 +10,8 @@ export default function MisPedidosUI() {
   return (
     <>
       {usuarioPedidos.pedido.length !== 0 && usuarioPedidos.pedido.map(ele =>
-      <>
-        <div key={ele.id} className="my-2 mx-1 border-2 rounded-xl border-pink-800 bg-gray-900 bg-opacity-50 text-center">
+      <div key={ele.id}>
+        <div className="my-2 mx-1 border-2 rounded-xl border-pink-800 bg-gray-900 bg-opacity-50 text-center">
           <div className="flex justify-around items-center p-1 space-x-3">
             <img className=" w-14 h-[60px] bg-center rounded-xl" src={`/img/${ele.imagen}`} alt="imagen de maya" />
 
@@ -83,7 +83,7 @@ export default function MisPedidosUI() {
               <button onClick={() => usuarioPedidos.fetchUpPedido(ele)} className="w-40 bg-[#741d51] rounded-xl text-white text-[11px] py-1">Guardar Cambios</button>
             </div>
           }
-          </>
+        </div>
       )}
     </>
   );

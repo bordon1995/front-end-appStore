@@ -15,8 +15,8 @@ export default function MisPedidos({ usuarioPedidos }) {
 
             <div className="hidden md:block">
                 {usuarioPedidos.pedido.length !== 0 && usuarioPedidos.pedido.map(ele =>
-
                     <div key={ele.id}>
+                        
                         <div className="flex w-3/4 mx-auto border-4 border-pink-800 my-5 rounded-3xl bg-gray-900 bg-opacity-50">
 
                             <div className="flex flex-col justify-center items-center ml-5">

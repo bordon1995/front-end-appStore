@@ -26,7 +26,10 @@ function App() {
             />
           </Route>
 
-          <Route path="/home" element={<Home cart={usuarioProducto} />}>
+          <Route
+            path="/home"
+            element={<Home usuarioPedidos={usuarioProducto} />}
+          >
             <Route
               index
               element={<Productos usuarioProducto={usuarioProducto} />}

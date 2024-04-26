@@ -3,16 +3,16 @@ import NavUI from "./NavUI";
 import BarraInfo from "./BarraInfo";
 import BarraInfoUI from "./BarraInfoUI";
 
-export default function Header({cart}) {
+export default function Header({usuarioPedidos}) {
   return (
     <>
       <header className=" imagen h-[25rem] flex flex-col justify-between">
 
         <div className="hidden md:flex">
-          <Nav cart={cart}></Nav>
+          <Nav usuarioPedidos={usuarioPedidos}></Nav>
         </div>
         <div className="block md:hidden">
-          <NavUI cart={cart}></NavUI>
+          <NavUI usuarioPedidos={usuarioPedidos}></NavUI>
         </div>
 
         <div className="text-center">

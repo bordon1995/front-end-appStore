@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { usuario, pedidos } from "../context/AuthProvaider";
+import {Usuario} from "../clases/Usuario.js";
+import { Pedidos } from "../clases/Pedidos.js";
+
+const usuario = new Usuario();
+const pedidos = new Pedidos();
 
 const urlConfirmarToken = `${import.meta.env.VITE_URL_BACKEND}/api/confirmar-cuenta/`;
 const urlLogin = `${import.meta.env.VITE_URL_BACKEND}/api`;
@@ -46,7 +50,8 @@ export function useRegistro() {
             return
         }
 
-        const respuesta = await usuario.add(useUsuario);
+        const newUser = new Usuario(useUsuario);
+        const respuesta = await newUser.add();
         setMsg({ mensaje: `${respuesta}`, typo: false });
 
     }
@@ -131,14 +136,12 @@ export function useLogin() {
             })
             const res = await req.json()
             localStorage.setItem('token', res.token);
+            usuario.usuario.id = res.respuesta.id;
+            console.log(usuario);
             return res;
         } catch (error) {
             setMsg({ mensaje: 'Error al intentar registrar la cuenta' })
         }
-    }
-
-    const logoAuth = () => {
-        localStorage.removeItem('token');
     }
 
     return {
@@ -146,7 +149,6 @@ export function useLogin() {
         useUsuario,
         handleSubmit,
         msg,
-        logoAuth,
     }
 }
 
@@ -199,7 +201,8 @@ export function usePedidos() {
     const [change, setChange] = useState([]);
 
     const getPedidos = async () => {
-        await pedidos.main();
+        console.log(usuario.usuario)
+        await pedidos.main(usuario.usuario);
         setPedido([...pedidos.getPedidos()])
     }
 
@@ -216,6 +219,9 @@ export function usePedidos() {
             console.log(array)
             setChange([...array]);
         }
+    }
+    const addPedido = (cart) => {
+        pedidos.add(cart);
     }
 
     const fetchUpPedido = (pedido) => {
@@ -236,6 +242,7 @@ export function usePedidos() {
         fetchUpPedido,
         setData,
         change,
+        addPedido,
         deletePedido,
     }
 }

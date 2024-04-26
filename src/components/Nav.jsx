@@ -1,18 +1,24 @@
 import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router-dom";
-import { useLogin} from "../Hooks/useHook";
-import { pedidos } from "../context/AuthProvaider";
+// import { useLogin} from "../Hooks/useHook";
+// import { pedidos } from "../context/AuthProvaider";
 
-export default function Nav({ cart }) {
+export default function Nav({ usuarioPedidos }) {
 
+  const {addPedido,cart,vaciarCart,addCart} = usuarioPedidos;
   const {auth} = useAuth();
+  // const {logoAuth} = useLogin();
 
-  const isEmty = () => cart.cart.length === 0;
+  const isEmty = () => cart.length === 0;
 
   const sendPedidos = async () =>{
-    await pedidos.add(cart.cart);
-    cart.vaciarCart();
+    await addPedido(cart);
+    vaciarCart();
   }
+
+  const logoAuth = () => {
+    localStorage.removeItem('token');
+}
 
   return (
     <div className=" w-full flex justify-between items-center">
@@ -31,13 +37,13 @@ export default function Nav({ cart }) {
           Mis Pedidos
         </Link>
         :
-        <Link className=" font-black p-2 text-white" to="/home/mis-pedidos">
+        <Link className=" font-black p-2 text-white" to="/home">
           Mis Productos
         </Link>
         }
         <Link to={"/"}>
         <button
-          onClick={() => useLogin.logoAuth()}
+          onClick={() => logoAuth()}
           className=" font-black p-2 text-white"
         >
           Cerrar Sesion
@@ -53,7 +59,7 @@ export default function Nav({ cart }) {
       {auth.respuesta?.administrador === "1" &&
       <Link to={"/home/mis-clientes"}>
         <button
-          onClick={() => useLogin.logoAuth()}
+          onClick={() => logoAuth()}
           className=" font-black p-2 text-white"
         >
           Mis Clientes
@@ -87,7 +93,7 @@ export default function Nav({ cart }) {
                     </tr>
                   </thead>
                   <tbody className="w-full text-center">
-                    {cart.cart.map(ele => ( 
+                    {cart.map(ele => ( 
                         <tr key={ele.id} className=" border-b border-slate-500">
                           <td>
                             <img
@@ -110,14 +116,14 @@ export default function Nav({ cart }) {
                             <div>
                               <p>
                                 <button
-                                  onClick={() => cart.addCart(ele)}
+                                  onClick={() => addCart(ele)}
                                   className="m-1 px-1 border"
                                 >
                                   +
                                 </button>
                                 {ele.cantidad}
                                 <button
-                                  onClick={() => cart.addCart(ele, "left")}
+                                  onClick={() => addCart(ele, "left")}
                                   className="m-1 px-1 border"
                                 >
                                   -
@@ -130,11 +136,11 @@ export default function Nav({ cart }) {
                   </tbody>
                 </table>
                 <div className="flex justify-between p-2">
-                  <button onClick={() => cart.vaciarCart()} className=" bg-gray-400 p-1 px-5 rounded-xl text-white font-bold">
+                  <button onClick={() => vaciarCart()} className=" bg-gray-400 p-1 px-5 rounded-xl text-white font-bold">
                     Vaciar Carrito
                   </button>
                   <Link to={"/home/mis-pedidos"}>
-                  <button onClick={() => sendPedidos(cart.cart)} className=" bg-[#741d51] p-1 px-5 rounded-xl text-white font-bold">
+                  <button onClick={() => sendPedidos(cart)} className=" bg-[#741d51] p-1 px-5 rounded-xl text-white font-bold">
                     Enviar Pedido
                   </button>
                   </Link>

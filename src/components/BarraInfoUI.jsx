@@ -4,12 +4,15 @@ import useAuth from "../Hooks/useAuth";
 export default function BarraInfoUI() {
 
   const {auth} = useAuth();
-  console.log(auth)
+
+  const logoAuth = () => {
+    localStorage.removeItem('token');
+}
 
   return (
     <div className=" grid grid-cols-3 bg-[#741d51] p-1">
       <div className="mx-auto w-10 h-10">
-        <button>
+        <button onClick={() => logoAuth()}>
           <Link to={"/"}>
             <img
               className=" w-full h-full"
