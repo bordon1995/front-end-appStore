@@ -137,7 +137,6 @@ export function useLogin() {
             const res = await req.json()
             localStorage.setItem('token', res.token);
             usuario.usuario.id = res.respuesta.id;
-            console.log(usuario);
             return res;
         } catch (error) {
             setMsg({ mensaje: 'Error al intentar registrar la cuenta' })

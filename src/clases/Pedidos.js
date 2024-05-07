@@ -103,7 +103,6 @@ export class Pedidos {
             const req = await fetch(url, config);
             const res = await req.json();
 
-            console.log(res)
             if(res.respuesta.length > 0){
                 this.setPedidos(res.respuesta)
             } else {

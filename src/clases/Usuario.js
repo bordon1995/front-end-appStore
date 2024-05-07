@@ -67,6 +67,7 @@ export class Usuario {
         } else {
             producto.cantidad = this.cantidadMinima;
             producto.disponibilidad = producto.disponibilidad - this.cantidadMinima;
+            producto.usuario_id = this.usuario.id;
             this.cart = [...this.cart, producto];
         
         }
@@ -113,7 +114,6 @@ export class Usuario {
 
             const req = await fetch(uri, config);
             const res = await req.json();
-            console.log(res);
             if(res.respuesta !== null){
                 this.setProductos(res.respuesta);
             }
