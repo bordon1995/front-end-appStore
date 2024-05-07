@@ -52,7 +52,7 @@ export function useRegistro() {
 
         const newUser = new Usuario(useUsuario);
         const respuesta = await newUser.add();
-        setMsg({ mensaje: `${respuesta}`, typo: false });
+        setMsg({ mensaje: `${respuesta}.Revise su bandeja de entrada y confirme su cuenta.`, typo: false });
 
     }
 
