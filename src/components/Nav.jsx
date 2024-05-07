@@ -1,18 +1,16 @@
 import useAuth from "../Hooks/useAuth";
+import { pedidos } from "../Hooks/useHook";
 import { Link } from "react-router-dom";
-// import { useLogin} from "../Hooks/useHook";
-// import { pedidos } from "../context/AuthProvaider";
 
 export default function Nav({ usuarioPedidos }) {
 
-  const {addPedido,cart,vaciarCart,addCart} = usuarioPedidos;
+  const {cart,vaciarCart,addCart} = usuarioPedidos;
   const {auth} = useAuth();
-  // const {logoAuth} = useLogin();
 
   const isEmty = () => cart.length === 0;
 
   const sendPedidos = async () =>{
-    await addPedido(cart);
+    await pedidos.add(cart);
     vaciarCart();
   }
 

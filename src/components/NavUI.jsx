@@ -1,12 +1,13 @@
-// import { pedidos } from "../context/AuthProvaider";
+import { pedidos } from "../Hooks/useHook";
+import { Link } from "react-router-dom";
 
 export default function NavUI({usuarioPedidos}) {
 
-  const {cart,addPedido,vaciarCart,addCart} = usuarioPedidos;
+  const {cart,vaciarCart,addCart} = usuarioPedidos;
   const isEmty = () => cart.length === 0;
 
   const sendPedidos = async () =>{
-    await addPedido(cart.cart);
+    await pedidos.add(cart);
     vaciarCart();
   }
 
@@ -80,9 +81,11 @@ export default function NavUI({usuarioPedidos}) {
                   <button onClick={() => vaciarCart()} className=" bg-gray-400 p-1 px-5 rounded-xl text-white font-bold">
                     Vaciar Carrito
                   </button>
+                  <Link to={"/home/mis-pedidos"}>
                   <button onClick={() => sendPedidos(cart)} className=" bg-[#741d51] p-1 px-5 rounded-xl text-white font-bold">
                     Enviar Pedido
                   </button>
+                  </Link>
                 </div>
                 </> 
                   }

@@ -3,7 +3,7 @@ import {Usuario} from "../clases/Usuario.js";
 import { Pedidos } from "../clases/Pedidos.js";
 
 export const usuario = new Usuario();
-const pedidos = new Pedidos();
+export const pedidos = new Pedidos();
 
 const urlConfirmarToken = `${import.meta.env.VITE_URL_BACKEND}/api/confirmar-cuenta/`;
 const urlLogin = `${import.meta.env.VITE_URL_BACKEND}/api`;
@@ -201,7 +201,6 @@ export function usePedidos() {
     const [change, setChange] = useState([]);
 
     const getPedidos = async () => {
-        console.log(usuario.usuario)
         await pedidos.main(usuario.usuario);
         setPedido([...pedidos.getPedidos()])
     }
@@ -219,9 +218,6 @@ export function usePedidos() {
             console.log(array)
             setChange([...array]);
         }
-    }
-    const addPedido = (cart) => {
-        pedidos.add(cart);
     }
 
     const fetchUpPedido = (pedido) => {
@@ -242,7 +238,6 @@ export function usePedidos() {
         fetchUpPedido,
         setData,
         change,
-        addPedido,
         deletePedido,
     }
 }
